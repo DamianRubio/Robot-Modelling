@@ -18,14 +18,26 @@ yBack = 16.5;
 zBack = 23.5;
 
 holeD = 3;
+holeH = 100;
 
 //modules
 module FrontSide(){
-    cube([xFrontSide, yFrontSide, zFrontSide]);
+    difference(){
+        cube([xFrontSide, yFrontSide, zFrontSide]);
+        translate([xFrontSide,(yFrontSide-yBackSide)/2,zFrontSide/2])
+            rotate([0,90,0])
+                cylinder(h=holeH, d=holeD, center=true);
+    }
 }
 
 module FrontCenter(){
-    cube([xFrontCenter, yFrontCenter, zFrontCenter]);
+    difference(){
+        cube([xFrontCenter, yFrontCenter, zFrontCenter]);
+        translate([xFrontCenter,yFrontCenter/2,zFrontSide/2]){
+            rotate([0,90,0])
+                cylinder(h=holeH, d=holeD, center=true);
+        }
+    }
 }
 
 module BackSide(){
@@ -44,7 +56,7 @@ module RealBack(){
         BackSide();
 }
 
-module withoutHolesServoBrace(){
+module ServoBrace(){
     union(){
         FrontSide();
         translate([-xBackSide,yFrontSide-yBackSide,0])
@@ -53,9 +65,10 @@ module withoutHolesServoBrace(){
             FrontCenter();
         translate([-xBackSide,yFrontSide+yFrontCenter+yBack-3*yBackSide,0])
             RealBack();
-        translate([0,yFrontSide+yFrontCenter+2*yBack-4*yBackSide,0])
+        translate([0,2*yFrontSide+yFrontCenter+2*yBack-4*yBackSide,0])
+            rotate([0,0,180])
             FrontSide();
     }
 }
 
-withoutHolesServoBrace();
+ServoBrace();
