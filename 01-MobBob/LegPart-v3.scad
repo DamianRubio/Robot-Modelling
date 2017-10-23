@@ -12,7 +12,7 @@ bigSideHoleD = 5;
 sideCylinderH = 4.5;
 sideCylinderCenterA = 11.5;
 sideCylinderCenterB = 17.5;
-holeH = 6;
+holeH = 12;
 
 xSide = 24;
 ySide = 3;
@@ -25,13 +25,13 @@ module back(){
         cube([xBack, yBack, zBack]);
         translate([xBack,yBack/2,zBack/2])
             rotate([0,90,0])
-                cylinder(h=holeH, d=bigBackHoleD, center=true);
+                cylinder(h=holeH, d=bigBackHoleD, center=true, $fn=20);
         translate([xBack,yBack/4,zBack/2])
             rotate([0,90,0])
-                cylinder(h=holeH, d=smallHolesD, center=true);
+                cylinder(h=holeH, d=smallHolesD, center=true, $fn=20);
         translate([xBack,3*(yBack/4),zBack/2])
             rotate([0,90,0])
-                cylinder(h=holeH, d=smallHolesD, center=true);
+                cylinder(h=holeH, d=smallHolesD, center=true, $fn=20);
         }
 }
 
@@ -49,13 +49,13 @@ module rightSide(){
         side();
         translate([sideCylinderCenterA,0,zSide/2])
             rotate([90,0,0])
-                cylinder(h=holeH, d=smallHolesD, center=true);
+                cylinder(h=holeH, d=smallHolesD, center=true, $fn=20);
         translate([sideCylinderCenterB,0,zSide/2])
             rotate([90,0,0])
-                cylinder(h=holeH, d=smallHolesD, center=true);
+                cylinder(h=holeH, d=smallHolesD, center=true, $fn=20);
         translate([xSide,0,zSide/2])
             rotate([90,0,0])
-                cylinder(h=holeH, d=bigSideHoleD, center=true);
+                cylinder(h=holeH, d=bigSideHoleD, center=true, $fn=20);
     }
 }
 
