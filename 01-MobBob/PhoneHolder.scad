@@ -22,6 +22,13 @@ xBackBox = 2.37;
 yBackBox = 52;
 zBackBox = 29.4;
 
+xSideBackBox = 16-xBackBox;
+ySideBackBox = 4;
+zSideBackBox = zBackBox;
+
+xBottomBackBox = 16-xBackBox;
+yBottomBackBox = 44.2;
+zBottomBackBox = zBackBox - 26;
 
 
 module mainRectangle(){
@@ -50,15 +57,42 @@ module frontBox(){
 }
 
 module backBox(){
-    translate([-xBackBox,yBackBoxTranslation,zBackBoxTranslation-zBackBox])
-        cube([xBackBox, yBackBox, zBackBox]);
+    union(){
+        translate([-xBackBox,yBackBoxTranslation,zBackBoxTranslation-zBackBox])
+            cube([xBackBox, yBackBox, zBackBox]);
+        translate([-xBackBox-xSideBackBox,yBackBoxTranslation,zBackBoxTranslation-zBackBox])
+            cube([xSideBackBox, ySideBackBox, zSideBackBox]);
+         translate([-xBackBox-xSideBackBox,yBackBoxTranslation+yBackBox-ySideBackBox,zBackBoxTranslation-zBackBox])
+            cube([xSideBackBox, ySideBackBox, zSideBackBox]);
+        difference(){
+        translate([-xBackBox-xSideBackBox,yBackBoxTranslation+yBackBox-ySideBackBox-yBottomBackBox,zBackBoxTranslation-zBackBox])
+            cube([xBottomBackBox, yBottomBackBox, zBottomBackBox]);
+        #translate([-10,30,26])
+            rotate([0,8,0])
+                cube([180,90,1], center = true);
+    }
+    }
 }
 
+module backBoxFinal(){
+    difference(){
+        backBox();
+        #translate([-10,30,60])
+            rotate([0,-20,0])
+                cube([180,90,10], center = true);
+        #translate([-5,30,23])
+            rotate([0,8,0])
+                cube([180,90,10], center = true);
+        #translate([-22,30,25])
+            rotate([0,-75,0])
+                cube([180,90,10], center = true);
+    }
+}
 module phoneHolder(){
     union(){
         mainRectangle();    
         frontBox();
-        backBox();
+        backBoxFinal();
     }   
 }
 
