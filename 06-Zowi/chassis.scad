@@ -57,12 +57,41 @@ zSquareLeft = 6;
 
 xPositionSquareLeft = 4;
 
+//Cuadrados para restar
+xCuadrado = 14;
+yCuadrado = 11;
+zCuadrado = 12;
+
+xPositionCuadrado = 25;
+yPositionCuadrado = 2;
+xCuadradoSeparation = 2;
+
+//chimenea
+xExteriorChimenea = 55;
+yExteriorChimenea = 32;
+zChimenea = 37;
+
+rCornerChimenea = 2;
+grosorChimenea = 2;
+
 //invocations
 module chassis(){
+   difference(){
+       chassisAlfa();
+       translate([xPositionCuadrado,yPositionCuadrado,0])
+        cube([xCuadrado,yCuadrado,zCuadrado]);
+       translate([xPositionCuadrado+xCuadradoSeparation+xCuadrado,yPositionCuadrado,0])
+        cube([xCuadrado,yCuadrado,zCuadrado]);
+   }
+}
+
+module chassisAlfa(){
     union(){
         baseWithScrewHoles();
         translate([xBackHolePosition,yIzqdaPosition,zBase])
             leftSideBaseHoled();
+        translate([0,yBase/2-xExteriorChimenea/2,0])
+            chimenea();
     }
 }
 
@@ -188,6 +217,35 @@ module leftSideBaseHoled(){
         //Cuadrado alante
         translate([xTotalIzqda-xPositionSquareLeft,yTotalIzqda/2-ySquareLeft/2,zTotalIzqda-zSquareLeft])
             cube([xSquareLeft,ySquareLeft,zSquareLeft]);        
+    }
+}
+
+module chimenea(){
+    translate([0,xExteriorChimenea,0])
+    rotate([0,0,270])
+    difference(){
+        hull(){
+            translate([rCornerChimenea,rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([xExteriorChimenea-rCornerChimenea,rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([rCornerChimenea,yExteriorChimenea-rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([xExteriorChimenea-rCornerChimenea,yExteriorChimenea-rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+        }
+        
+        translate([grosorChimenea, grosorChimenea, 0])
+        hull(){
+            translate([rCornerChimenea,rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([xExteriorChimenea-rCornerChimenea-2*grosorChimenea,rCornerChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([rCornerChimenea,yExteriorChimenea-rCornerChimenea-2*grosorChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+            translate([xExteriorChimenea-rCornerChimenea-2*grosorChimenea,yExteriorChimenea-rCornerChimenea-2*grosorChimenea,0])
+                cylinder(h=zChimenea,r=rCornerChimenea,$fn=20);
+        }
     }
 }
 
