@@ -39,10 +39,30 @@ xTotalDcha = 74;
 yTotalDcha = 7;
 zTotalDcha = 4;
 
+//Parte Izqda
+xTotalIzqda = 74;
+yTotalIzqda = 9;
+zTotalIzqda = 7;
+
+yIzqdaPosition = 10;
+
+//Circulos parte izqda
+circleLeftD = 3.5;
+circleLeftH = 12;
+
+//Cuadrados de la parte izqda
+xSquareLeft = 3;
+ySquareLeft = 6;
+zSquareLeft = 6;
+
+xPositionSquareLeft = 4;
+
 //invocations
 module chassis(){
     union(){
         baseWithScrewHoles();
+        translate([xBackHolePosition,yIzqdaPosition,zBase])
+            leftSideBaseHoled();
     }
 }
 
@@ -136,6 +156,39 @@ module rightSideBase(){
         translate([xTotalDcha-xLeftSquareScrewHoles-xLeftSquareSeparations,0,zTotalDcha-zLeftSquareSeparations])
         cube([xLeftSquareSeparations,yLeftSquareSeparations,zLeftSquareSeparations]);
     }    
+}
+
+module leftSideBase(){
+    union(){
+        translate([0,rCorner,0])
+            cube([xTotalIzqda,yTotalIzqda-rCorner,zTotalIzqda]);
+            cube([xTotalIzqda,yTotalIzqda,zTotalIzqda-rCorner]);
+        translate([0,rCorner,zTotalIzqda-rCorner])
+            rotate([0,90,0])
+                cylinder(h=xTotalIzqda,r=rCorner,$fn=20);
+    }
+}
+
+module leftSideBaseHoled(){
+    difference(){
+        leftSideBase();
+        //Agujero atrás
+        translate([circleLeftH/2,yTotalIzqda/2,zTotalIzqda/2])
+            rotate([0,90,0])
+                cylinder(h=circleLeftH,d=circleLeftD,center=true,$fn=20);
+        //Agujero alante
+        translate([circleLeftH/2+xTotalIzqda-circleLeftH,yTotalIzqda/2,zTotalIzqda/2])
+            rotate([0,90,0])
+                cylinder(h=circleLeftH,d=circleLeftD,center=true,$fn=20);
+        
+        //Cuadrado atrás
+        translate([xPositionSquareLeft,yTotalIzqda/2-ySquareLeft/2,zTotalIzqda-zSquareLeft])
+            cube([xSquareLeft,ySquareLeft,zSquareLeft]);
+        
+        //Cuadrado alante
+        translate([xTotalIzqda-xPositionSquareLeft,yTotalIzqda/2-ySquareLeft/2,zTotalIzqda-zSquareLeft])
+            cube([xSquareLeft,ySquareLeft,zSquareLeft]);        
+    }
 }
 
 chassis();
