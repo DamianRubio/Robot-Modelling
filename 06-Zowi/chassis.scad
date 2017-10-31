@@ -34,12 +34,15 @@ screwHeadD = 6;
 screwHeadDeep = 3;
 backScrewD = 3.5;
 
+//Parte dcha
+xTotalDcha = 74;
+yTotalDcha = 7;
+zTotalDcha = 4;
 
 //invocations
 module chassis(){
     union(){
         baseWithScrewHoles();
-        //leftSideWithoutScrewHoles();
     }
 }
 
@@ -79,6 +82,8 @@ module baseWithoutScrewHoles(){
             leftSideWithoutScrewHoles();
         translate([xBackHolePosition,yBackHolePosition-yLeftSquareScrewHoles,zBase])
             leftSideWithoutScrewHoles();
+        translate([3,yFrontHolePosition+yHole,zBase])
+            rightSideBase();
         }   
 }
 
@@ -101,8 +106,36 @@ module baseWithScrewHoles(){
             screw();
         //tornillo4
         translate([xBase-xHole-3+xLeftSquareScrewHoles/2+xLeftSquareScrewHoles+xLeftSquareSeparations,yFrontHolePosition-yLeftSquareScrewHoles/2,0])
-            screw();        
+            screw();
+        //tornillo5
+        translate([3+xLeftSquareScrewHoles/2,yFrontHolePosition-yLeftSquareScrewHoles/2+yHole+yLeftSquareScrewHoles,0])
+            screw();
+       //tornillo6
+        translate([3+xLeftSquareScrewHoles/2+xLeftSquareScrewHoles+xLeftSquareSeparations,yFrontHolePosition-yLeftSquareScrewHoles/2+yHole+yLeftSquareScrewHoles,0])
+            screw(); 
+       //tornillo7
+         translate([xBase-xHole-3+xLeftSquareScrewHoles/2,yFrontHolePosition-yLeftSquareScrewHoles/2+yHole+yLeftSquareScrewHoles,0])
+            screw();
+           //tornillo8
+        translate([xBase-xHole-3+xLeftSquareScrewHoles/2+xLeftSquareScrewHoles+xLeftSquareSeparations,yFrontHolePosition-yLeftSquareScrewHoles/2+yHole+yLeftSquareScrewHoles,0])
+            screw();   
     }  
+}
+
+module rightSideBase(){
+    difference(){
+        hull(){
+            cube([xTotalDcha,yTotalDcha-rCorner,zTotalDcha]);
+            translate([xTotalDcha-rCorner,yTotalDcha-rCorner,0])
+                cylinder(h=zTotalDcha,r=rCorner,$fn=20);
+            translate([rCorner,yTotalDcha-rCorner,0])
+                cylinder(h=zTotalDcha,r=rCorner,$fn=20);
+        }
+        translate([xLeftSquareScrewHoles,0,zTotalDcha-zLeftSquareSeparations])
+        cube([xLeftSquareSeparations,yLeftSquareSeparations,zLeftSquareSeparations]);
+        translate([xTotalDcha-xLeftSquareScrewHoles-xLeftSquareSeparations,0,zTotalDcha-zLeftSquareSeparations])
+        cube([xLeftSquareSeparations,yLeftSquareSeparations,zLeftSquareSeparations]);
+    }    
 }
 
 chassis();
