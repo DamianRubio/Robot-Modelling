@@ -90,7 +90,7 @@ module chassisAlfa(){
         baseWithScrewHoles();
         translate([xBackHolePosition,yIzqdaPosition,zBase])
             leftSideBaseHoled();
-        translate([0,yBase/2-xExteriorChimenea/2,0])
+        translate([3+xHole,yBase/2-xExteriorChimenea/2+yTotalIzqda-2,0])
             chimenea();
     }
 }
