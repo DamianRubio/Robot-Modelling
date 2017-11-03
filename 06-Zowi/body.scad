@@ -21,6 +21,30 @@ diffRightSideHoles = 16.5;
 xRightSideHolesPosition = xBody/2-(dRightSideHoles*2+diffRightSideHoles)/2+dRightSideHoles/2;
 zRightSideHolesPosition = zBody/2-(dRightSideHoles*2+diffRightSideHoles)/2+dRightSideHoles/2;
 
+
+//Small Frontand Back Holes
+dSmallHoles = dRightSideHoles;
+ySmallHoles = 13.5 + dSmallHoles/2;
+zSmallHoles = 1.75 + dSmallHoles/2;
+
+//BackSide hole
+dBackSideHole = 8;
+yBackSideHole = 8 + dBackSideHole/2;
+zBackSideHole = 17.5 + dBackSideHole/2;
+
+//FrontSide hole
+dFrontSideHole = 12;
+yFrontSideHole = 8 + dFrontSideHole/2;
+zFrontSideHole = 9.5 + dFrontSideHole/2;
+
+//Front Square
+yFrontSquare = 8;
+zFrontSquare = 11;
+dFrontSquareCorner = 1.5;
+yPostionFrontSquare = 5.5;
+zPostionFrontSquare = 38;
+
+
 //modules
 
 module body(){
@@ -30,7 +54,11 @@ module body(){
             leftSideHoles();
         translate([xRightSideHolesPosition,0,zRightSideHolesPosition])
             rightSideHoles();
-    }    
+        smallHoles();
+        backSideHole();
+        frontSideHole();
+        frontSquareHole();
+    }        
 }
 
 module bodyBase(){
@@ -89,6 +117,52 @@ module rightSideHoles(){
     translate([diffRightSideHoles+dRightSideHoles/2, 0,diffRightSideHoles+dRightSideHoles/2])
         rotate([90,0,0])
             cylinder(h=grosorBody*5, d=dRightSideHoles, center=true, $fn=20);
+}
+
+module smallHoles(){
+    //agujero1
+    translate([0, ySmallHoles, zSmallHoles])
+        rotate([0,90,0])
+            cylinder(h=grosorBody*5, d=dSmallHoles, center=true, $fn=20);
+    //agujero2
+    translate([xBody, ySmallHoles, zSmallHoles])
+        rotate([0,90,0])
+            cylinder(h=grosorBody*5, d=dSmallHoles, center=true, $fn=20);
+}
+
+module backSideHole(){
+    //agujero1
+    translate([0, yBackSideHole, zBackSideHole])
+        rotate([0,90,0])
+            cylinder(h=grosorBody*5, d=dBackSideHole, center=true, $fn=20);
+}
+
+module frontSideHole(){
+    //agujero1
+    translate([xBody, yFrontSideHole, zFrontSideHole])
+        rotate([0,90,0])
+            cylinder(h=grosorBody*5, d=dFrontSideHole, center=true, $fn=20);
+}
+
+module frontSquareHole(){
+    hull(){
+        //agujero1
+        translate([xBody, yPostionFrontSquare+dFrontSquareCorner/2,zPostionFrontSquare-dFrontSquareCorner/2])
+            rotate([0,90,0])
+                cylinder(h=grosorBody*5, d=dFrontSquareCorner, center=true, $fn=20);
+        //agujero2
+        translate([xBody, yPostionFrontSquare+yFrontSquare-dFrontSquareCorner/2,zPostionFrontSquare-dFrontSquareCorner/2])
+            rotate([0,90,0])
+                cylinder(h=grosorBody*5, d=dFrontSquareCorner, center=true, $fn=20);
+        //agujero3
+        translate([xBody, yPostionFrontSquare+dFrontSquareCorner/2, zPostionFrontSquare-zFrontSquare+dFrontSquareCorner/2])
+            rotate([0,90,0])
+                cylinder(h=grosorBody*5, d=dFrontSquareCorner, center=true, $fn=20);
+        //agujero4
+        translate([xBody, yPostionFrontSquare+yFrontSquare-dFrontSquareCorner/2, zPostionFrontSquare-zFrontSquare+dFrontSquareCorner/2])
+            rotate([0,90,0])
+                cylinder(h=grosorBody*5, d=dFrontSquareCorner, center=true, $fn=20);
+    }
 }
 
 body();
