@@ -34,7 +34,7 @@ auxHolesRad = 11;
 dAuxHoles = 3;
 
 //modules
-module body(){
+module body2(){
     translate([dBigCircles/2-10,-dBigCircles/2-10,0])
         bigHoledCircle();
     translate([dBigCircles+dBigCircles/2,-dBigCircles/2-10,0])
@@ -112,4 +112,4 @@ module longStructureBase(){
     }
 }
 
-body();
+body2();

@@ -10,7 +10,7 @@ xDiff = 6.42 + dExterior;
 yDiff = 2 + dExterior;
 
 //modules
-module body(){
+module body3(){
     separator();
     translate([0,yDiff,0])
         separator();
@@ -28,4 +28,4 @@ module separator(){
         }    
 }
 
-body();
+body3();

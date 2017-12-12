@@ -14,7 +14,7 @@ hHoles = 3 * hBigCircle;
 scaleFactor = ((dSmallCircle+6)*100/65)/100;
 
 //modules
-module body(){
+module body1(){
     union(){
         bigCircle();
         translate([0,0,hBigCircle])
@@ -56,4 +56,4 @@ module restBase(){
     }
 }
 
-body();
+body1();
