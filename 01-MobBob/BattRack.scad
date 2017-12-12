@@ -28,7 +28,7 @@ module Back(){
      cube([xBack, yBack,     zBack]);
 }
 
-module BattRack(){
+module battRack(){
     union(){
         Leg();
         translate([-xSide+xLeg,yLeg,0])
@@ -42,4 +42,4 @@ module BattRack(){
     }  
 }
 
-BattRack();
+battRack();

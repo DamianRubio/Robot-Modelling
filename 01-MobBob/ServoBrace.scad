@@ -56,7 +56,7 @@ module RealBack(){
         BackSide();
 }
 
-module ServoBrace(){
+module servoBrace(){
     union(){
         FrontSide();
         translate([-xBackSide,yFrontSide-yBackSide,0])
@@ -71,4 +71,4 @@ module ServoBrace(){
     }
 }
 
-ServoBrace();
+servoBrace();
