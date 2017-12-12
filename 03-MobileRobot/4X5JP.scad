@@ -13,7 +13,7 @@ xDiffBet = 15 + dHoles;
 yDiffBet = 15+ dHoles;
 
 //modules
-module body(){
+module body2(){
     difference(){
         base();
         translate([-xDiffBet+xDiff,-yDiffBet+yDiff,0])
@@ -35,4 +35,4 @@ module holes(){
     }
 }
 
-body();
+body2();

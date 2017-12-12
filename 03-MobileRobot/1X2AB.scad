@@ -21,7 +21,7 @@ xMargin = (xLateral-xLateralSuperior)/2;
 
 
 //modules
-module body(){
+module body1(){
     union(){
         base();
         translate([0,yLateral,zBase])
@@ -55,4 +55,4 @@ module lateral(){
     }
 }
 
-body();
+body1();

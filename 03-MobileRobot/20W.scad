@@ -21,7 +21,7 @@ yListon = 1;
 zListon = hExterior;
 
 //modules
-module body(){
+module body3(){
     union(){
         difference(){
             wheelBase();
@@ -63,4 +63,4 @@ module center(){
     cylinder(h=hHoles, d=dHoles, center=true, $fn=20);
 }
 
-body();
+body3();

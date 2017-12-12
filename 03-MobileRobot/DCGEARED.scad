@@ -27,7 +27,7 @@ screwHeadDeep = 3;
 backScrewD = 3;
 
 //modules
-module body(){
+module body4(){
     difference(){
         base();
         holes();
@@ -99,4 +99,4 @@ module screwHole(){
             screw_hole([screwHeadD, screwHeadDeep, 180], backScrewD, 30);
 }
 
-body();
+body4();
