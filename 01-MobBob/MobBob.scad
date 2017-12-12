@@ -8,7 +8,8 @@ use <LegPart-v3.scad>
 use <PhoneHolder.scad>
 use <ServoBrace.scad>
 
-module MobBob(){  
+module MobBob(){
+  union(){
     translate([0,0,0])
         footRight();
     translate([0,75,0])
@@ -28,6 +29,7 @@ module MobBob(){
         battRack();
     translate([35,25,34])
         phoneHolder();    
+  }  
 }
 
 MobBob();
