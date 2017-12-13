@@ -47,7 +47,7 @@ zPostionFrontSquare = 38;
 
 //modules
 
-module body(){
+module body1(){
     difference(){
         bodyBase();
         translate([xLeftSideHolesPosition,0,0])
@@ -165,4 +165,4 @@ module frontSquareHole(){
     }
 }
 
-body();
+body1();
