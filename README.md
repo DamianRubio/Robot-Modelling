@@ -1,5 +1,5 @@
 # SR-Modelado
-Este repositorio contiene los distintos modelados realizados para las actividades del Tema 3 (Modelado 3D) de la asignatura Software para Robots de Ingeniería Informática del Software en Uniovi. 
+This repository contains several 3D models created for the activities of Topic 3 (3D Modeling) of the Robots Software subject of Software Engineering Bachellor in Uniovi.
 
-## Diseños originales
-Los diseños originales de las distintas piezas están disponibles en https://www.thingiverse.com/. Los archivos de este repositorio intentan replicar algunos de los proyectos ahí presentes para comprender la creación de modelados 3D y el manejo de la herramienta OpenSCAD.
+## Original designs
+The original designs of the different pieces are available at https://www.thingiverse.com/. The files of this repository try to replicate some of the projects present there to understand the creation of 3D models and the use of the OpenSCAD tool.
